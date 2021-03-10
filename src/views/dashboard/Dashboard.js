@@ -6,13 +6,23 @@ import {
   CCard,
   CCardBody,
   CFormGroup,
-  CLabel
+  CLabel,
+  CButton,
+  	CModal,
+  	CModalHeader,
+  	CModalTitle,
+  	CModalBody,
+  	CModalFooter
 } from '@coreui/react'
 import _ from 'underscore';
 import common from '../../common';
 import configuration from '../../config';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+
+function showImage(cell, row) {
+	return <img src={cell} alt="buysmart" style={{width:'60px'}}/>;
+}
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -24,6 +34,9 @@ class Dashboard extends Component {
         	products:[],
         	originalProductSize:0,
         	dataSize:0,
+        	modal:false,
+        	showDetails:false,
+        	fields:{}
         };
     }
 
@@ -127,10 +140,40 @@ class Dashboard extends Component {
 		});
   	}
 
+  	handleAction(){
+  		if(this.refs.table.state.selectedRowKeys.length===0){
+			this.setState({modal:true})
+		}
+		else{
+			fetch(configuration.baseURL+"product/action", {
+				method: "post",
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+				},
+				body:JSON.stringify({ids:this.refs.table.state.selectedRowKeys, type:'delete'})
+			}).then((response) => {
+				return response.json();
+			}).then((data) => {
+				this.componentDidMount();
+				this.refs.table.reset();
+			});
+		}
+  	}
+
+  	showAllDetails(cell, row){
+  		return <span style={{color:'#2373d5', cursor:'pointer'}} onClick={this.openDetails.bind(this, row)}>{cell}</span>
+  		
+  	}
+
+  	openDetails(row){
+  		this.setState({showDetails:true, fields:row})
+  	}
+
     render() {
     	const selectRowProp = {
 			mode: 'checkbox',
-			clickToSelect: true,
+			//clickToSelect: true,
 			bgColor: 'lightgrey'
 		};
 		const options = {
@@ -167,6 +210,47 @@ class Dashboard extends Component {
 	  		<div>
 	  			<Session/>
 	  			<div className="loader-img" style={{display: this.state.showLoader ? 'block' : 'none' }}></div>
+	  			<CModal 
+	              show={this.state.modal} 
+	              onClose={() => this.setState({modal:!this.state.modal})}
+	              color="danger"
+            	>
+              		<CModalHeader closeButton>
+                		<CModalTitle>Message</CModalTitle>
+              		</CModalHeader>
+              		<CModalBody>
+		                Please select atleast one row.
+              		</CModalBody>
+              		<CModalFooter>
+		                <CButton color="danger" onClick={() => this.setState({modal:!this.state.modal})}>Close</CButton>{' '}
+              		</CModalFooter>
+        		</CModal>
+        		<CModal 
+	              show={this.state.showDetails} 
+	              onClose={() => this.setState({showDetails:!this.state.showDetails})}
+	              color="danger"
+            	>
+              		<CModalHeader closeButton>
+                		<CModalTitle>Other Details</CModalTitle>
+              		</CModalHeader>
+              		<CModalBody>
+		                <p> <b>Product Url</b> : {this.state.fields.Product_Url} </p>
+		                <p> <b>Mrp</b> : {this.state.fields.Mrp} </p>
+		                <p> <b>Sell Price</b> : {this.state.fields.SellPrice} </p>
+		                <p> <b>Discount</b> : {this.state.fields.Discount} </p>
+		                <p> <b>Colour</b> : {this.state.fields.Colour} </p>
+		                <p> <b>Rating Count</b> : {this.state.fields.Rating_Count} </p>
+		                <p> <b>Review Count</b> : {this.state.fields.Review_Count} </p>
+		                <p> <b>Rating Star</b> : {this.state.fields.Rating_Star} </p>
+		                <p> <b>Time stamp</b> : {this.state.fields.Time_stamp} </p>
+		                <p> <b>SS update</b> : {this.state.fields.SS_update} </p>
+		                <p> <b>CS update</b> : {this.state.fields.CS_update} </p>
+		                <p> <b>Query count</b> : {this.state.fields.Query_count} </p>
+              		</CModalBody>
+              		<CModalFooter>
+		                <CButton color="danger" onClick={() => this.setState({showDetails:!this.state.showDetails})}>Close</CButton>{' '}
+              		</CModalFooter>
+        		</CModal>
 		  		<CRow>
 		  			<CCol xs="12" md="12">
           				<CCard>
@@ -182,17 +266,19 @@ class Dashboard extends Component {
 		                                />
 				                  	</CCol>
                                 </CFormGroup>
+                                <p>
+		            				<CButton color="danger" className="px-4" onClick={this.handleAction.bind(this)}>Delete</CButton>
+		            			</p>
 		            			<BootstrapTable data={this.state.data} version='4' pagination={ true } selectRow={ selectRowProp } remote={ true } fetchInfo={{ dataTotalSize: this.state.dataSize }} options={ options } ref='table' hover search={true} >
 									<TableHeaderColumn isKey dataField='product_id' hidden={ true }>#ID</TableHeaderColumn>
-									<TableHeaderColumn  dataField='product_id'  dataSort={ true }  width='15%'>#ID</TableHeaderColumn>
-									<TableHeaderColumn dataField='Host' dataSort={ true }  width='10%'>Host</TableHeaderColumn>
-									<TableHeaderColumn dataField='Brand_name' dataSort={ true } width='10%'>Brand</TableHeaderColumn>
+									<TableHeaderColumn  dataField='product_id' dataFormat={ this.showAllDetails.bind(this) }  dataSort={ true }  width='10%'>#ID</TableHeaderColumn>
+									<TableHeaderColumn dataField='Index' dataSort={ true }  width='10%'>Index</TableHeaderColumn>
+									<TableHeaderColumn dataField='Host' dataSort={ true } width='10%'>Host</TableHeaderColumn>
+									<TableHeaderColumn dataField='Img_key' dataSort={ true } width='20%'>Img key</TableHeaderColumn>
 									<TableHeaderColumn dataField='Product_key' width='15%'>Product Key</TableHeaderColumn>
-									<TableHeaderColumn dataField='Colour' width='10%'>Colour</TableHeaderColumn>
-									<TableHeaderColumn dataField='Mrp' width='10%'>Mrp</TableHeaderColumn>
-									<TableHeaderColumn dataField='SellPrice' dataSort={ true } width='10%'>Sell Price</TableHeaderColumn>
-									<TableHeaderColumn dataField='Discount' dataSort={ true } width='10%'>Discount</TableHeaderColumn>
-									<TableHeaderColumn dataField='Rating_Star' dataSort={ true } width='10%'>Rating</TableHeaderColumn>
+									<TableHeaderColumn dataField='Brand_name' width='12%'>Brand name</TableHeaderColumn>
+									<TableHeaderColumn dataField='Product_Title' width='13%'>Product Title</TableHeaderColumn>
+									<TableHeaderColumn dataField='Img_url' dataFormat={ showImage } dataSort={ true } width='10%'>Img url</TableHeaderColumn>
 								</BootstrapTable> 
 		            		</CCardBody>
 		            	</CCard>	
