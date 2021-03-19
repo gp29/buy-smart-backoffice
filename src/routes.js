@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+const banner = React.lazy(() => import('./views/banner/view'))
 // User
 const UserView = React.lazy(() => import('./views/admin/view'))
 const UserAdd = React.lazy(() => import('./views/admin/add'))
@@ -12,6 +13,7 @@ const routes = [
     { path: '/user/view', name: 'View User', component: UserView },
     { path: '/user/add', name: 'Add User', component: UserAdd },
     { path: '/user/edit/:id', name: 'Edit User', component: UserEdit },
+    { path: '/banner', name: 'Banner', component: banner },
 ]
 
 export default routes

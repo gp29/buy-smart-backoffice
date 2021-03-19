@@ -17,5 +17,11 @@ export default [
                 to: '/user/view',
             }
         ]   
-    }
+    },
+    {
+        _tag: 'CSidebarNavItem',
+        name: 'Banner',
+        to: '/banner',
+        icon: 'cil-speedometer',
+    },
 ]
