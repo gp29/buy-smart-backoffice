@@ -255,7 +255,7 @@ class Dashboard extends Component {
 		  			<CCol xs="12" md="12">
           				<CCard>
 		            		<CCardBody>
-		            			<CFormGroup row>
+		            			{/*<CFormGroup row>
 				                	<CCol md="6">
 				                    	<CLabel htmlFor="hf-Status">Import Data</CLabel><br/>
 				                    	<input
@@ -265,7 +265,7 @@ class Dashboard extends Component {
 		                                    onChange={this.uploadJson.bind(this)}
 		                                />
 				                  	</CCol>
-                                </CFormGroup>
+                                </CFormGroup>*/}
                                 <p>
 		            				<CButton color="danger" className="px-4" onClick={this.handleAction.bind(this)}>Delete</CButton>
 		            			</p>
