@@ -22,6 +22,12 @@ export default [
         _tag: 'CSidebarNavItem',
         name: 'Banner',
         to: '/banner',
-        icon: 'cil-speedometer',
+        icon: 'cil-comment-square',
+    },
+    {
+        _tag: 'CSidebarNavItem',
+        name: 'Feed',
+        to: '/feed',
+        icon: 'cil-check',
     },
 ]
