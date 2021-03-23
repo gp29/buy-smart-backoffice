@@ -45,7 +45,6 @@ const TheHeader = () => {
       />
       <CHeaderBrand className="mx-auto d-lg-none" to="/">
         {/*<CIcon name="logo" height="48" alt="Logo"/>*/}
-        <span className="res_logo">Biz Trust</span>
       </CHeaderBrand>
 
       <CHeaderNav className="d-md-down-none mr-auto">

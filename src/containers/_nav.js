@@ -30,4 +30,10 @@ export default [
         to: '/feed',
         icon: 'cil-check',
     },
+    {
+        _tag: 'CSidebarNavItem',
+        name: 'Lottie',
+        to: '/lottie',
+        icon: 'cil-check',
+    },
 ]
