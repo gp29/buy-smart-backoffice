@@ -34,6 +34,12 @@ export default [
         _tag: 'CSidebarNavItem',
         name: 'Lottie',
         to: '/lottie',
-        icon: 'cil-check',
+        icon: 'cil-circle',
+    },
+    {
+        _tag: 'CSidebarNavItem',
+        name: 'Version Selector',
+        to: '/version',
+        icon: 'cil-basket',
     },
 ]
