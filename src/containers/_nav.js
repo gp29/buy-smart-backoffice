@@ -42,4 +42,16 @@ export default [
         to: '/version',
         icon: 'cil-basket',
     },
+    {
+        _tag: 'CSidebarNavItem',
+        name: 'Report Category',
+        to: '/report/view',
+        icon: 'cib-flickr',
+    },
+    {
+        _tag: 'CSidebarNavItem',
+        name: 'User Reported',
+        to: '/reported',
+        icon: 'cib-tumblr',
+    },
 ]
