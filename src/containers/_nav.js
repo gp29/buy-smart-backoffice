@@ -54,4 +54,16 @@ export default [
         to: '/reported',
         icon: 'cib-tumblr',
     },
+    {
+        _tag: 'CSidebarNavItem',
+        name: 'Ad',
+        to: '/ad',
+        icon: 'cil-puzzle',
+    },
+    {
+        _tag: 'CSidebarNavItem',
+        name: 'Settings',
+        to: '/settings',
+        icon: 'cil-settings',
+    },
 ]
