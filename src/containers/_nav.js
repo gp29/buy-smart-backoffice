@@ -66,4 +66,10 @@ export default [
         to: '/settings',
         icon: 'cil-settings',
     },
+    {
+        _tag: 'CSidebarNavItem',
+        name: 'Send Notification',
+        to: '/notification',
+        icon: 'cil-bell',
+    },
 ]

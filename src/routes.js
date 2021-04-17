@@ -7,6 +7,7 @@ const ad = React.lazy(() => import('./views/ad/view'))
 const lottie = React.lazy(() => import('./views/lottie/view'))
 const version = React.lazy(() => import('./views/version/view'))
 const settings = React.lazy(() => import('./views/settings/view'))
+const notification = React.lazy(() => import('./views/notification/view'))
 // User
 const UserView = React.lazy(() => import('./views/admin/view'))
 const UserAdd = React.lazy(() => import('./views/admin/add'))
@@ -35,6 +36,7 @@ const routes = [
     { path: '/lottie', name: 'Lottie', component: lottie },
     { path: '/version', name: 'Version', component: version },
     { path: '/settings', name: 'Settings', component: settings },
+    { path: '/notification', name: 'Notification', component: notification },
 ]
 
 export default routes
