@@ -267,18 +267,21 @@ class Dashboard extends Component {
 				                  	</CCol>
                                 </CFormGroup>*/}
                                 <p>
+		            				<CButton color="primary" className="px-4" onClick={()=> this.props.history.push('/product/add')}>Add</CButton>{' '}
 		            				<CButton color="danger" className="px-4" onClick={this.handleAction.bind(this)}>Delete</CButton>
 		            			</p>
 		            			<BootstrapTable data={this.state.data} version='4' pagination={ true } selectRow={ selectRowProp } remote={ true } fetchInfo={{ dataTotalSize: this.state.dataSize }} options={ options } ref='table' hover search={true} >
 									<TableHeaderColumn isKey dataField='product_id' hidden={ true }>#ID</TableHeaderColumn>
-									<TableHeaderColumn  dataField='product_id' dataFormat={ this.showAllDetails.bind(this) }  dataSort={ true }  width='10%'>#ID</TableHeaderColumn>
-									<TableHeaderColumn dataField='Index' dataSort={ true }  width='10%'>Index</TableHeaderColumn>
+									<TableHeaderColumn dataField='Index' dataFormat={ this.showAllDetails.bind(this) } dataSort={ true }  width='10%'>Index</TableHeaderColumn>
 									<TableHeaderColumn dataField='Host' dataSort={ true } width='10%'>Host</TableHeaderColumn>
-									<TableHeaderColumn dataField='Img_key' dataSort={ true } width='20%'>Img key</TableHeaderColumn>
-									<TableHeaderColumn dataField='Product_key' width='15%'>Product Key</TableHeaderColumn>
-									<TableHeaderColumn dataField='Brand_name' width='12%'>Brand name</TableHeaderColumn>
-									<TableHeaderColumn dataField='Product_Title' width='13%'>Product Title</TableHeaderColumn>
+									<TableHeaderColumn dataField='Img_key' dataSort={ true } width='10%'>Img key</TableHeaderColumn>
+									<TableHeaderColumn dataField='Product_key' width='10%'>Product Key</TableHeaderColumn>
+									<TableHeaderColumn dataField='Brand_name' width='10%'>Brand name</TableHeaderColumn>
+									<TableHeaderColumn dataField='Product_Title' width='10%'>Product Title</TableHeaderColumn>
 									<TableHeaderColumn dataField='Img_url' dataFormat={ showImage } dataSort={ true } width='10%'>Img url</TableHeaderColumn>
+									<TableHeaderColumn dataField='Query_count' dataSort={ true } width='10%'>Query count</TableHeaderColumn>
+									<TableHeaderColumn dataField='SS_update' dataSort={ true } width='10%'>SS update</TableHeaderColumn>
+									<TableHeaderColumn dataField='CS_update' dataSort={ true } width='10%'>CS update</TableHeaderColumn>
 								</BootstrapTable> 
 		            		</CCardBody>
 		            	</CCard>	

@@ -101,6 +101,12 @@ class Settings extends Component {
 											                    	<CInput type="number" placeholder="Enter count" onChange={this.handleChange.bind(this,'display_background_scrap')} value={this.state.fields.display_background_scrap} />
 											                  	</CCol>
 											                </CFormGroup>
+											                <CFormGroup row>
+											                  	<CCol md="6">
+											                    	<CLabel htmlFor="hf-title">Display Product Feed</CLabel>
+											                    	<CInput type="number" placeholder="Enter count" onChange={this.handleChange.bind(this,'product_feed')} value={this.state.fields.product_feed} />
+											                  	</CCol>
+											                </CFormGroup>
 											            </CForm>    
 	            									</CCardBody>
 	            									<CCardFooter>

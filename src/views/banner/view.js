@@ -11,13 +11,15 @@ import {
   	CFormGroup,
   	CLabel,
   	CFormText,
-  	CDataTable
+  	CDataTable,
+  	CInput
 } from '@coreui/react'
 import configuration from '../../config';
 
 const fields = [
     { key: 'banner_id',label:'#ID', _style: { width: '20%'} },
-    { key: 'image', _style: { width: '70%'} },
+    { key: 'image', _style: { width: '20%'} },
+    { key: 'url', _style: { width: '50%'} },
     { key: 'delete',label:'', _style: { width: '10%'} },
 ]
 
@@ -53,10 +55,15 @@ class view extends Component {
             formIsValid = false;
             errors["banner"] = "Please select banner image.";
         }
+        if(!fields["url"]){
+            formIsValid = false;
+            errors["url"] = "Please enter redirect url.";
+        }
         this.setState({errors: errors});
         if(formIsValid){
 	    	const data = new FormData(); 
 	        data.append('banner', this.uploadProfile.files[0]);
+	        data.append('fields', JSON.stringify(this.state.fields));
 			this.setState({showLoader:true})
 			fetch(configuration.baseURL+"banner/upload", {
 				method: "post",
@@ -90,6 +97,12 @@ class view extends Component {
 		});
 	}
 
+	handleChange(field, e){
+    	let fields = this.state.fields;
+        fields[field] = e.target.value;
+    	this.setState({fields})
+    }
+
     render() {
 	  	return (
 	  		<CRow>
@@ -109,6 +122,11 @@ class view extends Component {
                                             onChange={this.handleUploadImage.bind(this,'banner')}
                                         />
 		                    			<CFormText className="help-block">{this.state.errors['banner']}</CFormText>
+				                  	</CCol>
+				                  	<CCol md="6">
+				                    	<CLabel htmlFor="hf-Type">Redirect URL</CLabel><br/>
+				                    	<CInput type="text" placeholder="Enter url" onChange={this.handleChange.bind(this,'url')} value={this.state.fields.url} />
+		                    			<CFormText className="help-block">{this.state.errors['url']}</CFormText>
 				                  	</CCol>
 				                </CFormGroup>  	
 				            </CForm>
