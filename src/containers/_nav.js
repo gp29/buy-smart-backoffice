@@ -62,6 +62,12 @@ export default [
     },
     {
         _tag: 'CSidebarNavItem',
+        name: 'About us',
+        to: '/about',
+        icon: 'cil-puzzle',
+    },
+    {
+        _tag: 'CSidebarNavItem',
         name: 'Settings',
         to: '/settings',
         icon: 'cil-settings',
