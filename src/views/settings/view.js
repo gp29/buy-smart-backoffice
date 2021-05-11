@@ -106,6 +106,20 @@ class Settings extends Component {
 											                    	<CLabel htmlFor="hf-title">Display Product Feed</CLabel>
 											                    	<CInput type="number" placeholder="Enter count" onChange={this.handleChange.bind(this,'product_feed')} value={this.state.fields.product_feed} />
 											                  	</CCol>
+											                  	<CCol md="6">	
+											                    	<CLabel htmlFor="hf-title">Company Email</CLabel>
+											                    	<CInput type="text" placeholder="Enter email" onChange={this.handleChange.bind(this,'email')} value={this.state.fields.email} />
+											                  	</CCol>
+											                </CFormGroup>
+											                <CFormGroup row>
+											                  	<CCol md="6">
+											                    	<CLabel htmlFor="hf-title">Company Mobile</CLabel>
+											                    	<CInput type="text" placeholder="Enter mobile" onChange={this.handleChange.bind(this,'mobile')} value={this.state.fields.mobile} />
+											                  	</CCol>
+											                  	<CCol md="6">
+											                    	<CLabel htmlFor="hf-code">Company Address</CLabel>
+											                    	<CInput type="text" placeholder="Enter address" onChange={this.handleChange.bind(this,'address')} value={this.state.fields.address} />
+											                  	</CCol>
 											                </CFormGroup>
 											            </CForm>    
 	            									</CCardBody>
