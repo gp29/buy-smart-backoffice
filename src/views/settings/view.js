@@ -76,6 +76,14 @@ class Settings extends Component {
 		});
     }
 
+    setAdData(){
+    	toast.success('Data set successfully.');
+    	fetch(configuration.baseURL+"settings/set-ad").then((response) => {
+			return response.json();
+		}).then((data) => { 
+		});
+    }
+
     render() {
 	  	return (
 		    <CRow>
@@ -133,6 +141,10 @@ class Settings extends Component {
 											                  	<CCol md="6">
 											                    	<CLabel htmlFor="hf-title">Set Feed Data</CLabel><br/>
 											                    	<CButton color="primary" className="px-4" onClick={this.setFeedData.bind(this)}>Set</CButton>{' '}
+											                  	</CCol>
+											                  	<CCol md="6">
+											                    	<CLabel htmlFor="hf-title">Set Ad Data</CLabel><br/>
+											                    	<CButton color="primary" className="px-4" onClick={this.setAdData.bind(this)}>Set</CButton>{' '}
 											                  	</CCol>
 											                </CFormGroup>
 											            </CForm>    
