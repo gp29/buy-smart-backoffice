@@ -68,6 +68,14 @@ class Settings extends Component {
 		});
     }
 
+    setFeedData(){
+    	toast.success('Data set successfully.');
+    	fetch(configuration.baseURL+"settings/set-feed").then((response) => {
+			return response.json();
+		}).then((data) => { 
+		});
+    }
+
     render() {
 	  	return (
 		    <CRow>
@@ -119,6 +127,12 @@ class Settings extends Component {
 											                  	<CCol md="6">
 											                    	<CLabel htmlFor="hf-code">Company Address</CLabel>
 											                    	<CInput type="text" placeholder="Enter address" onChange={this.handleChange.bind(this,'address')} value={this.state.fields.address} />
+											                  	</CCol>
+											                </CFormGroup>
+											                <CFormGroup row>
+											                  	<CCol md="6">
+											                    	<CLabel htmlFor="hf-title">Set Feed Data</CLabel><br/>
+											                    	<CButton color="primary" className="px-4" onClick={this.setFeedData.bind(this)}>Set</CButton>{' '}
 											                  	</CCol>
 											                </CFormGroup>
 											            </CForm>    
