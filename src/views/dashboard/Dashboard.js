@@ -281,9 +281,10 @@ class Dashboard extends Component {
 									<TableHeaderColumn dataField='Brand_name' width='10%'>Brand name</TableHeaderColumn>
 									<TableHeaderColumn dataField='Product_Title' width='10%'>Product Title</TableHeaderColumn>
 									<TableHeaderColumn dataField='Img_url' dataFormat={ showImage } dataSort={ true } width='10%'>Img url</TableHeaderColumn>
-									<TableHeaderColumn dataField='Query_count' dataSort={ true } width='10%'>Query count</TableHeaderColumn>
-									<TableHeaderColumn dataField='SS_update' dataSort={ true } width='10%'>SS update</TableHeaderColumn>
-									<TableHeaderColumn dataField='CS_update' dataSort={ true } width='10%'>CS update</TableHeaderColumn>
+									<TableHeaderColumn dataField='category_id' dataSort={ true } width='9%'>Category ID</TableHeaderColumn>
+									<TableHeaderColumn dataField='Query_count' dataSort={ true } width='7%'>Query count</TableHeaderColumn>
+									<TableHeaderColumn dataField='SS_update' dataSort={ true } width='7%'>SS update</TableHeaderColumn>
+									<TableHeaderColumn dataField='CS_update' dataSort={ true } width='7%'>CS update</TableHeaderColumn>
 								</BootstrapTable> 
 		            		</CCardBody>
 		            	</CCard>	

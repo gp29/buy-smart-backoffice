@@ -139,6 +139,16 @@ class Settings extends Component {
 											                </CFormGroup>
 											                <CFormGroup row>
 											                  	<CCol md="6">
+											                    	<CLabel htmlFor="hf-title">Total Set Feed Page in Cache</CLabel>
+											                    	<CInput type="number" placeholder="Enter page" onChange={this.handleChange.bind(this,'total_feed_page_cache')} value={this.state.fields.total_feed_page_cache} />
+											                  	</CCol>
+											                  	<CCol md="6">
+											                    	<CLabel htmlFor="hf-code">Total Categories</CLabel>
+											                    	<CInput type="number" placeholder="Enter categories" onChange={this.handleChange.bind(this,'total_category')} value={this.state.fields.total_category} />
+											                  	</CCol>
+											                </CFormGroup>
+											                <CFormGroup row>
+											                  	<CCol md="6">
 											                    	<CLabel htmlFor="hf-title">Set Feed Data</CLabel><br/>
 											                    	<CButton color="primary" className="px-4" onClick={this.setFeedData.bind(this)}>Set</CButton>{' '}
 											                  	</CCol>

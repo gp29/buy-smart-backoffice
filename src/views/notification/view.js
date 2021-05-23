@@ -119,13 +119,18 @@ class view extends Component {
 	        }).then((response) => {
 	            return response.json();
 	        }).then((data) => {
-	        	let fields = this.state.fields;
-	        	fields['description'] = '';
+	        	let chart = this.state.chart;
+                let fields = this.state.fields;
+	        	chart['description'] = '';
+                fields['description'] = '';
+                chart['title'] = '';
                 fields['title'] = '';
+                fields['type'] = '';
+                chart['metadata'] = '';
                 fields['metadata'] = '';
                 fields['small_icon'] = null;
                 fields['big_icon'] = null;
-	        	this.setState({fields, selectedItems:[], showLoader:false})
+	        	this.setState({fields, selectedItems:[], showLoader:false, chart:chart})
 	        	return toast.success('Notification sent successfully.');
 	        });
         }
@@ -154,7 +159,7 @@ class view extends Component {
                                             items={this.state.items}
                                             selectedItems={this.state.selectedItems}
                                             onChange={this.handleChangeItem.bind(this)}
-                                            showSelectAll={false}
+                                            showSelectAll={true}
                                             //maxSelectedItems={1}
                                         />
 		                    			<CFormText className="help-block">{this.state.errors['user_id']}</CFormText>
@@ -163,12 +168,40 @@ class view extends Component {
 				                <CFormGroup row>
 				                	<CCol md="6">
                                         <CLabel htmlFor="hf-Status">Title</CLabel>
-                                        <CInput type="text" placeholder="Enter title" onChange={this.handleChange.bind(this, 'title')} value={this.state.fields.title} />
+                                        <Editor
+                                            initialValue={this.state.chart['title']}
+                                            onEditorChange={this.editorChange.bind(this, 'title')}
+                                            apiKey="ojlr793y9oqw2wrsdfmucxcsikt18elks1q43n0ojw5z9m33"
+                                            init={{
+                                                height: 500,
+                                                menubar: false,
+                                                plugins: [
+                                                    'advlist autolink lists link image charmap print preview anchor',
+                                                    'searchreplace visualblocks code fullscreen',
+                                                    'insertdatetime media table paste code help wordcount'
+                                                ],
+                                                toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | code'
+                                            }}
+                                        />
                                         <CFormText className="help-block">{this.state.errors['title']}</CFormText>
                                     </CCol>
                                     <CCol md="6">
                                         <CLabel htmlFor="hf-Status">Description</CLabel>
-                                        <CInput type="text" placeholder="Enter description" onChange={this.handleChange.bind(this, 'description')} value={this.state.fields.description} />
+                                        <Editor
+                                            initialValue={this.state.chart['description']}
+                                            onEditorChange={this.editorChange.bind(this, 'description')}
+                                            apiKey="ojlr793y9oqw2wrsdfmucxcsikt18elks1q43n0ojw5z9m33"
+                                            init={{
+                                                height: 500,
+                                                menubar: false,
+                                                plugins: [
+                                                    'advlist autolink lists link image charmap print preview anchor',
+                                                    'searchreplace visualblocks code fullscreen',
+                                                    'insertdatetime media table paste code help wordcount'
+                                                ],
+                                                toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | code'
+                                            }}
+                                        />
                                         <CFormText className="help-block">{this.state.errors['description']}</CFormText>
                                     </CCol>
 				                </CFormGroup> 
