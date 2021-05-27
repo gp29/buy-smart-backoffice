@@ -157,6 +157,12 @@ class Settings extends Component {
 											                    	<CButton color="primary" className="px-4" onClick={this.setAdData.bind(this)}>Set</CButton>{' '}
 											                  	</CCol>
 											                </CFormGroup>
+											                <CFormGroup row>
+											                  	<CCol md="6">
+											                    	<CLabel htmlFor="hf-title">Report Default Message</CLabel><br/>
+											                    	<CInput type="text" placeholder="Enter Message" onChange={this.handleChange.bind(this,'report_default_msg')} value={this.state.fields.report_default_msg} />
+											                  	</CCol>
+											                </CFormGroup>
 											            </CForm>    
 	            									</CCardBody>
 	            									<CCardFooter>

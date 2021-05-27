@@ -11,7 +11,7 @@ import {
   	CFormGroup,
   	CLabel,
   	CFormText,
-  	CInput
+    CSelect
 } from '@coreui/react'
 import configuration from '../../config';
 import MultiSelect from "@kenshooui/react-multi-select";
@@ -76,7 +76,11 @@ class view extends Component {
         }
         if(!fields["type"]){
             formIsValid = false;
-            errors["type"] = "Please enter type.";
+            errors["type"] = "Please select type.";
+        }
+        if(!fields["sub_type"]){
+            formIsValid = false;
+            errors["sub_type"] = "Please select sub type.";
         }
         if(!fields["description"]){
             formIsValid = false;
@@ -131,7 +135,8 @@ class view extends Component {
                 fields['small_icon'] = null;
                 fields['big_icon'] = null;
 	        	this.setState({fields, selectedItems:[], showLoader:false, chart:chart})
-	        	return toast.success('Notification sent successfully.');
+	        	toast.success('Notification sent successfully.');
+                window.location.reload();
 	        });
         }
     }
@@ -230,8 +235,26 @@ class view extends Component {
                                 <CFormGroup row>
                                     <CCol md="6">
                                         <CLabel htmlFor="hf-Status">Type</CLabel>
-                                        <CInput type="text" placeholder="Enter type" onChange={this.handleChange.bind(this, 'type')} value={this.state.fields.type} />
+                                        <CSelect custom onChange={this.handleChange.bind(this,'type')} value={this.state.fields.type}>
+                                            <option value="">--Select Type--</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </CSelect>
                                         <CFormText className="help-block">{this.state.errors['type']}</CFormText>
+                                    </CCol>
+                                    <CCol md="6">
+                                        <CLabel htmlFor="hf-Status">Sub Type</CLabel>
+                                        <CSelect custom onChange={this.handleChange.bind(this,'sub_type')} value={this.state.fields.sub_type}>
+                                            <option value="">--Select Sub Type--</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </CSelect>
+                                        <CFormText className="help-block">{this.state.errors['sub_type']}</CFormText>
                                     </CCol>
                                 </CFormGroup>
                                 <CFormGroup row>

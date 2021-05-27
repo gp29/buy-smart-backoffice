@@ -25,8 +25,9 @@ const fields = [
     { key: 'report_id',label:'#ID', _style: { width: '15%'} },
     { key: 'user_id', _style: { width: '15%'} },
     { key: 'name', _style: { width: '15%'} },
-    { key: 'category', _style: { width: '20%'} },
-    { key: 'message', _style: { width: '20%'} },
+    { key: 'category', _style: { width: '15%'} },
+    { key: 'url', _style: { width: '10%'} },
+    { key: 'message', _style: { width: '15%'} },
     { key: 'delete',label:'Action', _style: { width: '5%'} },
     { key: 'reply',label:'Reply', _style: { width: '10%'} },
 ]
@@ -40,7 +41,8 @@ class view extends Component {
         	user_id:'',
         	message:'',
         	data:[],
-        	errors:{}
+        	errors:{},
+        	results:[]
         };
     }
 
@@ -49,7 +51,7 @@ class view extends Component {
     	fetch(configuration.baseURL+"report/get-user-reported").then((response) => {
 			return response.json();
 		}).then((data) => {
-			this.setState({ data: data.payload});
+			this.setState({ data: data.payload, message:data.payload[0].report_default_msg});
 		});	
     }
 
@@ -92,7 +94,7 @@ class view extends Component {
 			}).then((response) => {
 				return response.json();
 			}).then((data) => {
-				this.setState({showLoader:false, user_id:'', message:''})
+				this.setState({showLoader:false, user_id:'', message:this.state.data[0].report_default_msg})
 				return toast.success('Notification sent successfully.');
 			});
         }
@@ -115,6 +117,21 @@ class view extends Component {
               		<CModalBody>
 		                <CRow>
 			                <CCol xs="12" md="12">
+			                	{
+			                		this.state.results.length > 0 ?
+			                		this.state.results.map((e, key) => {
+                                        return <CFormGroup row>
+						                  	<CCol md="12">
+						                    	<p>Index : {e.Index} </p>
+						                    	<p>Brand name : {e.Brand_name} </p>
+						                    	<p>Product Title : {e.Product_Title} </p>
+						                    	<p>Img_url : <img alt="buysmart" src={e.Img_url} width="50px" /> </p>
+						                  		<hr/>
+						                  	</CCol>
+						                </CFormGroup>;
+                                    })
+				                	: <p>In this report user not added result ID</p>
+			                	}
 			                	<CFormGroup row>
 				                  	<CCol md="12">
 				                    	<CLabel htmlFor="hf-title">Message</CLabel>
@@ -152,7 +169,7 @@ class view extends Component {
 						          	'reply':
 						          	(item)=>(
 							            <td>
-							              	<CButton color="primary" className="px-4" onClick={()=> this.setState({user_id:item.user_id, showModal:true})}>Send</CButton>
+							              	<CButton color="primary" className="px-4" onClick={()=> this.setState({user_id:item.user_id, showModal:true, results:item.results})}>Send</CButton>
 							            </td>
 						          	),
 						      	}}
