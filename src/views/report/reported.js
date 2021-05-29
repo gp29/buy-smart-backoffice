@@ -52,7 +52,6 @@ class view extends Component {
 			return response.json();
 		}).then((data) => {
 			this.setState({ data: data.payload, message:data.payload.length > 0 ? data.payload[0].report_default_msg : ''});
-			if
 		});	
     }
 
