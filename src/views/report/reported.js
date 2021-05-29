@@ -51,7 +51,8 @@ class view extends Component {
     	fetch(configuration.baseURL+"report/get-user-reported").then((response) => {
 			return response.json();
 		}).then((data) => {
-			this.setState({ data: data.payload, message:data.payload[0].report_default_msg});
+			this.setState({ data: data.payload, message:data.payload.length > 0 ? data.payload[0].report_default_msg : ''});
+			if
 		});	
     }
 
