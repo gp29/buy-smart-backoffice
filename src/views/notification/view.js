@@ -11,7 +11,8 @@ import {
   	CFormGroup,
   	CLabel,
   	CFormText,
-    CSelect
+    CSelect,
+    CInput
 } from '@coreui/react'
 import configuration from '../../config';
 import MultiSelect from "@kenshooui/react-multi-select";
@@ -90,14 +91,14 @@ class view extends Component {
             formIsValid = false;
             errors["metadata"] = "Please enter metadata.";
         }
-        if(!fields["small_icon"]){
-            formIsValid = false;
-            errors["small_icon"] = "Please select small icon.";
-        }
-        if(!fields["big_icon"]){
-            formIsValid = false;
-            errors["big_icon"] = "Please select big icon.";
-        }
+        // if(!fields["small_icon"]){
+        //     formIsValid = false;
+        //     errors["small_icon"] = "Please select small icon.";
+        // }
+        // if(!fields["big_icon"]){
+        //     formIsValid = false;
+        //     errors["big_icon"] = "Please select big icon.";
+        // }
         if(this.state.selectedItems.length === 0){
             formIsValid = false;
             errors["user_id"] = "Please select at least one user.";
@@ -110,8 +111,12 @@ class view extends Component {
             this.setState({fields});
 
             const data = new FormData(); 
-            data.append('small_icon', this.uploadSmallIcon.files[0]);
-            data.append('big_icon', this.uploadBigIcon.files[0]);
+            if(this.state.fields.small_icon === 'small_icon'){
+                data.append('small_icon', this.uploadSmallIcon.files[0]);
+            }
+            if(this.state.fields.small_icon === 'big_icon'){
+                data.append('big_icon', this.uploadBigIcon.files[0]);
+            }
             data.append('fields', JSON.stringify(this.state.fields));
 
         	fetch(configuration.baseURL+"auth/send-notification", {
@@ -278,6 +283,18 @@ class view extends Component {
                                         <CFormText className="help-block">{this.state.errors['metadata']}</CFormText>
                                     </CCol>
                                 </CFormGroup>  	
+                                <CFormGroup row>
+                                    <CCol md="6">
+                                        <CLabel htmlFor="hf-title">Button text</CLabel>
+                                        <CInput type="text" placeholder="Enter btn text" onChange={this.handleChange.bind(this,'btn_text')} value={this.state.fields.btn_text} />
+                                        <CFormText className="help-block">{this.state.errors.btn_text}</CFormText>
+                                    </CCol>
+                                    <CCol md="6">
+                                        <CLabel htmlFor="hf-code">Button URL</CLabel>
+                                        <CInput type="text" placeholder="Enter btn url" onChange={this.handleChange.bind(this,'btn_url')} value={this.state.fields.btn_url} />
+                                        <CFormText className="help-block">{this.state.errors.btn_url}</CFormText>
+                                    </CCol>
+                                </CFormGroup>
 				            </CForm>
 			            </CCardBody>
 			            <CCardFooter>
