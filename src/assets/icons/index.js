@@ -136,6 +136,9 @@ import {
   cilLanguage,
   cilSend,
   cilGroup,
+  cilRecycle,
+  cilPizza,
+  cilPlant,
 } from '@coreui/icons'
 
 export const icons = Object.assign({}, {
@@ -273,5 +276,8 @@ export const icons = Object.assign({}, {
   cibStripe,
   cibPaypal,
   cibGooglePay,
-  cibCcAmex
+  cibCcAmex,
+  cilRecycle,
+  cilPizza,
+  cilPlant
 })

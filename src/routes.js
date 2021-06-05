@@ -3,6 +3,7 @@ import React from 'react'
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const addProduct = React.lazy(() => import('./views/dashboard/add'))
 const banner = React.lazy(() => import('./views/banner/view'))
+const offer = React.lazy(() => import('./views/offer/view'))
 const feed = React.lazy(() => import('./views/feed/view'))
 const ad = React.lazy(() => import('./views/ad/view'))
 const defaultAd = React.lazy(() => import('./views/default-ad/view'))
@@ -35,6 +36,7 @@ const routes = [
     { path: '/reported', name: 'User Reported', component: reportUserReported },
 
     { path: '/banner', name: 'Banner', component: banner },
+    { path: '/offer', name: 'Offer', component: offer },
     { path: '/about', name: 'About', component: about },
     { path: '/feed', name: 'Feed', component: feed },
     { path: '/ad', name: 'Ad', component: ad },

@@ -26,6 +26,12 @@ export default [
     },
     {
         _tag: 'CSidebarNavItem',
+        name: 'Offer',
+        to: '/offer',
+        icon: 'cil-recycle',
+    },
+    {
+        _tag: 'CSidebarNavItem',
         name: 'Feed',
         to: '/feed',
         icon: 'cil-check',
@@ -64,13 +70,13 @@ export default [
         _tag: 'CSidebarNavItem',
         name: 'Default Ad',
         to: '/default-ad',
-        icon: 'cil-puzzle',
+        icon: 'cil-pizza',
     },
     {
         _tag: 'CSidebarNavItem',
         name: 'About us',
         to: '/about',
-        icon: 'cil-puzzle',
+        icon: 'cil-plant',
     },
     {
         _tag: 'CSidebarNavItem',
