@@ -20,6 +20,7 @@ import {
 import configuration from '../../config';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Switch from '@material-ui/core/Switch';
 
 class Settings extends Component {
 	constructor(props) {
@@ -33,7 +34,7 @@ class Settings extends Component {
 
     handleChange(field, e){
     	let fields = this.state.fields
-    	if(field === 'is_app_live'){
+    	if(field === 'is_cron_on'){
     		fields[field] = !this.state.switch;
     		this.setState({switch: !this.state.switch})
     	}
@@ -47,7 +48,7 @@ class Settings extends Component {
     	fetch(configuration.baseURL+"settings/get").then((response) => {
 			return response.json();
 		}).then((data) => {
-			this.setState({ fields: data.payload, switch:data.payload.is_app_live});
+			this.setState({ fields: data.payload, switch:data.payload.is_cron_on});
 		});
     }
 
@@ -162,7 +163,17 @@ class Settings extends Component {
 											                    	<CLabel htmlFor="hf-title">Report Default Message</CLabel><br/>
 											                    	<CInput type="text" placeholder="Enter Message" onChange={this.handleChange.bind(this,'report_default_msg')} value={this.state.fields.report_default_msg} />
 											                  	</CCol>
+											                  	<CCol md="6">
+											                    	<CLabel htmlFor="hf-title">Cron Job Run in Minutes</CLabel><br/>
+											                    	<CInput type="text" placeholder="Enter mins" onChange={this.handleChange.bind(this,'cron_run_mins')} value={this.state.fields.cron_run_mins} />
+											                  	</CCol>
 											                </CFormGroup>
+											                <CFormGroup row>
+                                                                <CCol md="6">
+                                                                    <CLabel htmlFor="hf-title">Is cron job ON ?</CLabel><br/>
+                                                                    <Switch onChange={this.handleChange.bind(this, 'is_cron_on')} checked={this.state.switch} onColor="#1e7e34" />
+                                                                </CCol>
+                                                            </CFormGroup>
 											            </CForm>    
 	            									</CCardBody>
 	            									<CCardFooter>
