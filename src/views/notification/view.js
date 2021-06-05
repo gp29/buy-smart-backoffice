@@ -114,7 +114,7 @@ class view extends Component {
             if(this.state.fields.small_icon === 'small_icon'){
                 data.append('small_icon', this.uploadSmallIcon.files[0]);
             }
-            if(this.state.fields.small_icon === 'big_icon'){
+            if(this.state.fields.big_icon === 'big_icon'){
                 data.append('big_icon', this.uploadBigIcon.files[0]);
             }
             data.append('fields', JSON.stringify(this.state.fields));
