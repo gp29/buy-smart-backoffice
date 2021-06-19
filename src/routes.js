@@ -12,6 +12,7 @@ const version = React.lazy(() => import('./views/version/view'))
 const settings = React.lazy(() => import('./views/settings/view'))
 const notification = React.lazy(() => import('./views/notification/view'))
 const about = React.lazy(() => import('./views/about/view'))
+const viewResult = React.lazy(() => import('./views/result/view'))
 // User
 const UserView = React.lazy(() => import('./views/admin/view'))
 const UserAdd = React.lazy(() => import('./views/admin/add'))
@@ -26,6 +27,7 @@ const routes = [
   	{ path: '/', exact: true, name: 'Home', },
   	{ path: '/dashboard', name: 'Dashboard', component: Dashboard },
     { path: '/product/add', name: 'Add Product', component: addProduct },
+    { path: '/result', name: 'Results', component: viewResult },
     { path: '/user/view', name: 'View User', component: UserView },
     { path: '/user/add', name: 'Add User', component: UserAdd },
     { path: '/user/edit/:id', name: 'Edit User', component: UserEdit },

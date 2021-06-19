@@ -20,6 +20,12 @@ export default [
     },
     {
         _tag: 'CSidebarNavItem',
+        name: 'Results',
+        to: '/result',
+        icon: 'cil-drop',
+    },
+    {
+        _tag: 'CSidebarNavItem',
         name: 'Banner',
         to: '/banner',
         icon: 'cil-comment-square',

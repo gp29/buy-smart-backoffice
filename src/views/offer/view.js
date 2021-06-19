@@ -19,8 +19,9 @@ import configuration from '../../config';
 const fields = [
     { key: 'offer_id',label:'#ID', _style: { width: '20%'} },
     { key: 'banner', _style: { width: '20%'} },
-    { key: 'host', _style: { width: '40%'} },
+    { key: 'host', _style: { width: '20%'} },
     { key: 'discount', _style: { width: '10%'} },
+    { key: 'target_url', _style: { width: '20%'} },
     { key: 'delete',label:'', _style: { width: '10%'} },
 ]
 
@@ -71,6 +72,10 @@ class view extends Component {
         if(!fields["discount"]){
             formIsValid = false;
             errors["discount"] = "Please enter discount.";
+        }
+        if(!fields["target_url"]){
+            formIsValid = false;
+            errors["target_url"] = "Please enter target url.";
         }
         this.setState({errors: errors});
         if(formIsValid){
@@ -160,6 +165,11 @@ class view extends Component {
 				                    	<CLabel htmlFor="hf-Type">Discount</CLabel><br/>
 				                    	<CInput type="text" placeholder="Enter discount" onChange={this.handleChange.bind(this,'discount')} value={this.state.fields.discount} />
 		                    			<CFormText className="help-block">{this.state.errors['discount']}</CFormText>
+				                  	</CCol>
+				                  	<CCol md="6">
+				                    	<CLabel htmlFor="hf-Type">Target URL</CLabel><br/>
+				                    	<CInput type="text" placeholder="Enter target url" onChange={this.handleChange.bind(this,'target_url')} value={this.state.fields.target_url} />
+		                    			<CFormText className="help-block">{this.state.errors['target_url']}</CFormText>
 				                  	</CCol>
 				                </CFormGroup> 	
 				            </CForm>
